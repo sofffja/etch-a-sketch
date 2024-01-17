@@ -9,7 +9,8 @@ container.style.maxWidth = `${gridSize}px`;
 makeGrid();
 
 container.addEventListener('mouseover', (e) => {
-  if (e.buttons === 1) {
+  e.preventDefault();
+  if (e.buttons === 1) { //check if mouse left button is pressed
     if (colorMode === 'black') {
       e.target.style.backgroundColor = 'black';
     } else if (colorMode === 'color') {
@@ -26,6 +27,8 @@ gridBtn.addEventListener('click', () => {
   gridResolution = prompt('select grid resolution (max 100)', '');
   if (gridResolution > 100) {
     gridResolution = prompt('please enter a number smaller than 100', '');
+  } else if (gridResolution <= 0) {
+    gridResolution = prompt('please enter a number greater than 0', '');
   }
   makeGrid();
 })
